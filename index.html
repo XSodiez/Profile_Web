@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XSodiez | Profile</title>
+  <!-- Font đẹp -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Icon Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: black;
+      color: white;
+    }
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -2;
+    }
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: -1;
+    }
+    .profile {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 40px;
+      border-radius: 25px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.5);
+      animation: fadeIn 1.5s ease-in-out;
+      width: 520px;
+      max-width: 95%;
+      max-height: 95vh;
+      overflow-y: auto;
+    }
+    .avatar {
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      border: 3px solid #4cc9f0;
+      box-shadow: 0 0 20px #4cc9f0;
+      transition: 0.4s;
+    }
+    .avatar:hover {
+      transform: scale(1.1) rotate(3deg);
+      box-shadow: 0 0 40px #90e0ef;
+    }
+    h1 {
+      margin: 20px 0 10px;
+      font-size: 2.4rem;
+      text-shadow: 0 0 15px #48cae4;
+    }
+    .typing {
+      font-size: 1rem;
+      margin-bottom: 25px;
+      display: block;
+      white-space: normal;
+      word-wrap: break-word;
+      text-align: center;
+      border-right: none;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .links { margin: 20px 0; }
+    .links a {
+      display: inline-block;
+      margin: 8px;
+      padding: 10px 18px;
+      border-radius: 25px;
+      background: rgba(0, 200, 255, 0.2);
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+      box-shadow: 0 0 15px rgba(0,200,255,0.4);
+    }
+    .links a:hover {
+      background: rgba(0,200,255,0.5);
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 0 25px #48cae4;
+    }
+
+    /* Kỹ năng */
+    .skills { text-align: left; margin-top: 25px; }
+    .skills h2 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      text-align: center;
+      text-shadow: 0 0 10px #4cc9f0;
+    }
+    .skill { margin: 10px 0; }
+    .skill-name { font-size: 0.9rem; margin-bottom: 5px; }
+    .progress {
+      width: 100%;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      height: 14px;
+    }
+    .progress-bar {
+      height: 100%;
+      text-align: right;
+      padding-right: 5px;
+      font-size: 0.7rem;
+      color: black;
+      border-radius: 10px;
+      width: 0;
+      transition: width 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <!-- Nền matrix -->
+  <canvas id="matrix"></canvas>
+  <div class="overlay"></div>
+
+  <!-- Profile -->
+  <div class="profile">
+    <img src="https://cdn.discordapp.com/attachments/1307757080010162310/1406598154345910322/Screenshot_2025-08-17-18-16-05-184_com.discord-edit.jpg?ex=68a30c1d&is=68a1ba9d&hm=8280954220b2da2ac1e15f26e5203f4d9c2a4e65364e96cc4229ade7f2bcdc08&" alt="Avatar" class="avatar">
+    <h1>XSodiez</h1>
+    <p class="typing"> Trần Ngọc An | Age:14 | Thái Nguyên | Script Dev </p>
+
+    <div class="links">
+      <a href="https://github.com/AzureHub7" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      <a href="https://discord.gg/" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+      <a href="https://www.roblox.com/users/profile?username=abnonnonytp" target="_blank"><i class="fas fa-cube"></i> Roblox</a>
+    </div>
+
+    <!-- Danh sách kỹ năng -->
+    <div class="skills">
+      <h2>Kỹ năng lập trình</h2>
+
+      <div class="skill"><div class="skill-name">Lua</div><div class="progress"><div class="progress-bar" data-width="20%" style="background:#00e0ff;">20%</div></div></div>
+      <div class="skill"><div class="skill-name">CSS</div><div class="progress"><div class="progress-bar" data-width="5%" style="background:#219ebc;">5%</div></div></div>
+      <div class="skill"><div class="skill-name">HTML</div><div class="progress"><div class="progress-bar" data-width="5%" style="background:#ffb703;">5%</div></div></div>
+      <div class="skill"><div class="skill-name">Python</div><div class="progress"><div class="progress-bar" data-width="10%" style="background:#3a86ff;">10%</div></div></div>
+      <div class="skill"><div class="skill-name">JavaScript</div><div class="progress"><div class="progress-bar" data-width="10%" style="background:#fb8500;">10%</div></div></div>
+      <div class="skill"><div class="skill-name">C++</div><div class="progress"><div class="progress-bar" data-width="5%" style="background:#2a9d8f;">5%</div></div></div>
+    </div>
+  </div>
+
+  <!-- Script Matrix Effect -->
+  <script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const letters = "01XSODIEZ<>[]{}";
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#4cc9f0";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+    setInterval(draw, 50);
+
+    window.addEventListener("resize", () => {
+      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+    });
+
+    // Animate progress bars
+    window.addEventListener("load", () => {
+      document.querySelectorAll(".progress-bar").forEach(bar => {
+        setTimeout(() => { bar.style.width = bar.dataset.width; }, 300);
+      });
+    });
+  </script>
+</body>
+</html>
